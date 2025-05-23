@@ -1,49 +1,50 @@
-# PaturainGame
-# 🧀 Paturain Memory Game
+🧀 Paturain Memory Game
+Welkom bij de Paturain Memory Game – een eenvoudige, leuke mini-website waarop je een memoryspel kunt spelen gebaseerd op elementen uit Paturain Naturel!
 
-Welkom bij de **Paturain Memory Game** – een eenvoudige, leuke mini-website waarop je een memoryspel kunt spelen gebaseerd op elementen uit Paturain Naturel!
+🎯 Beschrijving
+Deze mini-website bevat een interactieve memory game waarbij je telkens twee bij elkaar horende Paturain-kaarten moet vinden. Het spel is gemaakt met HTML, CSS en JavaScript, en draait volledig in de browser – zonder externe frameworks.
 
-## 🎯 Beschrijving
+✨ Functies
+Startscherm met knop om het spel te beginnen
 
-Deze mini-website bevat een interactieve memory game waarbij je telkens twee bij elkaar horende Paturain-kaarten moet vinden. Het spel is gemaakt met **HTML, CSS en JavaScript**, en draait volledig in de browser – zonder externe frameworks.
+Memory game met Paturain Naturel-afbeeldingen (zoals kuipje, stokbrood, kruiden, etc.)
 
----
+Mogelijkheid om opnieuw te spelen
 
-## 🔧 Functies
+Responsief ontwerp – werkt op desktop en mobiel
 
-- 👆 Startscherm met knop om het spel te beginnen  
-- 🧠 Memory game met Paturain Naturel afbeeldingen (zoals kuipje, stokbrood, kruiden, etc.)  
-- 🔄 Mogelijkheid om opnieuw te spelen  
-- 📱 Responsief ontwerp – werkt op desktop én mobiel  
-- 🖼️ Eenvoudig aan te passen kaarten (afbeeldingen)
----
+Eenvoudig aanpasbare afbeeldingen via de /Images map
 
-## 🧩 Kaarten aanpassen
+🚀 Installatie & Gebruik
+Clone de repository
 
-Je kunt de afbeeldingen van de memorykaarten aanpassen door je eigen afbeeldingen te plaatsen in de `/img`-map. Zorg ervoor dat elke afbeelding **2 keer wordt gebruikt** in het spel, zodat er paren gevormd kunnen worden.
+bash
+Kopiëren
+Bewerken
+git clone https://github.com/timjonkergouw/PaturainGame.git
+Open het spel
+Open index.html in je browser.
 
----
+Speel!
+Klik op "Start" om te beginnen en zoek de bijpassende kaarten.
 
-## 🚀 Hoe starten?
+🖼️ Afbeeldingen aanpassen
+Wil je de afbeeldingen van de memorykaarten aanpassen?
 
-1. Clone deze repository of download het ZIP-bestand.
-2. Open `index.html` in je browser.
-3. Klik op “Start het spel” en speel!
+Vervang de bestanden in de /Images map door je eigen afbeeldingen.
 
----
+Zorg ervoor dat de bestandsnamen overeenkomen met die in script.js.
 
-## ✅ Gebruikte technieken
+🛠️ Technische details
+HTML: Structuur van de pagina's (index.html, winner-form.html)
 
-- HTML5
-- CSS3 (Flexbox en transitions)
-- Vanilla JavaScript (zonder bibliotheken)
+CSS: Stijling en layout (style.css)
 
----
+JavaScript: Spelmechanica en interactie (script.js)
 
-## 📄 Licentie
+Fonts: Aangepaste lettertypen in de /Fonts map
 
-Dit project is gemaakt voor educatieve/demo-doeleinden. Je mag het vrij gebruiken en aanpassen voor eigen gebruik.
+📄 Licentie
+Dit project is open-source en beschikbaar onder de MIT-licentie.
 
----
-
-Veel plezier met spelen! 🧀🥖
+Voel je vrij om dit project te forken, aan te passen en te verbeteren!
