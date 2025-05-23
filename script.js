@@ -1,18 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const startScreen = document.getElementById('startScreen');
-    const gameContainer = document.getElementById('gameContainer');
-    const gameBoard = document.querySelector('.game-board');
-    const attemptsElement = document.getElementById('attempts');
-    const restartButton = document.getElementById('restart');
-    const changeThemeButton = document.getElementById('changeTheme');
-    const themeButtons = document.querySelectorAll('.theme-btn');
+    // Show name input modal when page loads
+    const nameModal = document.getElementById('nameModal');
+    const nameInput = document.getElementById('nameInput');
+    const startGameButton = document.getElementById('startGame');
+    const playerNameSpan = document.getElementById('playerName');
+    let playerName = '';
 
+    nameModal.style.display = 'block';
+
+    startGameButton.addEventListener('click', () => {
+        if (nameInput.value.trim() !== '') {
+            playerName = nameInput.value.trim();
+            playerNameSpan.textContent = playerName;
+            nameModal.style.display = 'none';
+            initializeGame();
+        }
+    });
+
+    // Game variables
     let attempts = 0;
+    const attemptsDisplay = document.getElementById('attempts');
+    const gameBoard = document.querySelector('.game-board');
+    const winModal = document.getElementById('winModal');
+    const finalAttemptsSpan = document.getElementById('finalAttempts');
+    const goToFormButton = document.getElementById('goToForm');
+
     let firstCard = null;
     let secondCard = null;
     let locked = false;
     let matchedPairs = 0;
-    let currentTheme = null;
 
     // Voeg hier je eigen afbeeldingen toe (8 verschillende afbeeldingen)
     const images = [
@@ -70,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkForMatch() {
         attempts++;
-        attemptsElement.textContent = attempts;
+        attemptsDisplay.textContent = attempts;
 
         const firstCardImage = firstCard.querySelector('img').src;
         const secondCardImage = secondCard.querySelector('img').src;
@@ -80,9 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             disableCards();
             matchedPairs++;
             if (matchedPairs === images.length) {
-                setTimeout(() => {
-                    alert(`Gefeliciteerd! Je hebt gewonnen in ${attempts} pogingen!`);
-                }, 500);
+                setTimeout(showWinModal, 500);
             }
         } else {
             unflipCards();
@@ -110,39 +124,74 @@ document.addEventListener('DOMContentLoaded', () => {
         locked = false;
     }
 
+    function showWinModal() {
+        finalAttemptsSpan.textContent = attempts;
+        winModal.style.display = 'block';
+    }
+
+    function hideWinModal() {
+        winModal.style.display = 'none';
+    }
+
     function initializeGame() {
         gameBoard.innerHTML = '';
         attempts = 0;
         matchedPairs = 0;
-        attemptsElement.textContent = attempts;
+        attemptsDisplay.textContent = attempts;
+        firstCard = null;
+        secondCard = null;
+        locked = false;
+        hideWinModal();
 
         const cards = shuffleCards();
         cards.forEach(imagePath => {
             const card = createCard(imagePath);
             gameBoard.appendChild(card);
         });
-
-        // Direct het spel tonen, zonder startscherm
-        if (startScreen) startScreen.style.display = 'none';
-        gameContainer.style.display = 'block';
     }
 
-    function showStartScreen() {
-        if (startScreen) startScreen.style.display = 'block';
-        gameContainer.style.display = 'none';
-    }
-
-    // Event Listeners
-    themeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const theme = button.dataset.theme;
-            initializeGame(theme);
+    // When player wins and clicks "Ga naar formulier"
+    if (goToFormButton) {
+        goToFormButton.addEventListener('click', () => {
+            // Store game data in localStorage
+            localStorage.setItem('winnerName', playerName);
+            localStorage.setItem('winnerAttempts', attempts.toString());
+            // Redirect to winner form page
+            window.location.href = 'winner-form.html';
         });
-    });
+    }
 
-    restartButton.addEventListener('click', initializeGame);
-    changeThemeButton.addEventListener('click', showStartScreen);
-
-    // Direct het spel starten bij het laden van de pagina
+    // Start het spel direct bij het laden van de pagina
     initializeGame();
-}); 
+});
+
+// This code runs on the winner-form.html page
+if (document.getElementById('winnerForm')) {
+    const nameInput = document.getElementById('name');
+    const attemptsInput = document.getElementById('attempts');
+
+    console.log('Loading stored data...'); // Debug log
+    // Fill in the stored data
+    const storedName = localStorage.getItem('winnerName');
+    const storedAttempts = localStorage.getItem('winnerAttempts');
+
+    console.log('Retrieved data:', {
+        name: storedName,
+        attempts: storedAttempts
+    }); // Debug log
+
+    nameInput.value = storedName || '';
+    attemptsInput.value = storedAttempts || '';
+
+    document.getElementById('winnerForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Here you can add code to handle the form submission
+        // For example, send the data to a server or show a thank you message
+        alert('Bedankt voor het invullen van het formulier!');
+        // Clear the stored data
+        localStorage.removeItem('winnerName');
+        localStorage.removeItem('winnerAttempts');
+        // Redirect back to the game
+        window.location.href = 'index.html';
+    });
+} 

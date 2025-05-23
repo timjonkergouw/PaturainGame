@@ -16,13 +16,39 @@
     </header>
 
     <div class="container">
-        <h1>Memory Game</h1>
         <div class="game-info">
+            <p class="code-display">Code: <span id="playerName"></span></p>
+        </div>
+        <h1>Paturain Naturel Memory</h1>
+        <p>Gebruik jou unieke code aan de binnenkant van de deksel om kans te maken op een reis naar Provence voor 2
+            Personen!</p>
+        <div class="attempts-display">
             <p>Pogingen: <span id="attempts">0</span></p>
-            <button id="restart">Opnieuw spelen</button>
         </div>
         <div class="game-board"></div>
     </div>
+
+    <!-- Name Input Modal -->
+    <div id="nameModal" class="modal">
+        <div class="modal-content">
+            <img src="Images/paturain logo.png" alt="Paturain Logo" class="modal-logo">
+            <h2>Welkom bij Paturain Naturel Memory!</h2>
+            <p>Voer je 8-cijferige code in om te beginnen:</p>
+            <input type="text" id="nameInput" placeholder="A1B2C3D4" required>
+            <button id="startGame" class="modal-button">Start Spel</button>
+        </div>
+    </div>
+
+    <!-- Win Modal -->
+    <div id="winModal" class="modal">
+        <div class="modal-content">
+            <img src="Images/paturain logo.png" alt="Paturain Logo" class="modal-logo">
+            <h2>Gefeliciteerd!</h2>
+            <p>Je hebt het spel gewonnen in <span id="finalAttempts">0</span> pogingen!</p>
+            <button id="goToForm" class="modal-button">Ga naar formulier</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
